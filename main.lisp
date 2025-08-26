@@ -43,3 +43,41 @@
     (t (format t "Zero~%"))))
 
 (print-sign-cond 24)
+
+(defun next-even (n)
+  (if (evenp n)
+    (+ n 2)
+    (+ n 1)))
+
+(princ (next-even 3))
+
+;; progn discards everything but the last expression
+(defun next-number (n)
+  (if (= (mod n 2) 0)
+    (progn
+      (format t "~A is even~%" n)
+      (/ n 2))
+    (+ (* 3 n) 1)))
+
+(princ (next-number 6))
+
+(defun read-number ()
+  (format t "Enter a number: ")
+  (finish-output)
+  (parse-integer (read-line)))
+
+(defun read-and-sum (n)
+  (let ((total 0))
+    (dotimes (i n)
+      (setf total (+ total (read-number))))
+    total))
+
+(princ (read-and-sum 3))
+
+;; Same function but using do loop
+(defun read-and-sum-do (n)
+  (let ((total 0))
+    (do ((i 0 (+ i 1))) ((= i n) total) ;; return total when i = n
+      (setf total (+ total (read-number))))))
+
+(princ (read-and-sum-do 3))
