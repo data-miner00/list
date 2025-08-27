@@ -81,3 +81,47 @@
       (setf total (+ total (read-number))))))
 
 (princ (read-and-sum-do 3))
+
+;; type and cons
+(princ (type-of '(1 2 3)))
+
+(princ (cons 1 2))
+
+(first (cons 1 2))
+
+;; first = car
+;; rest = cdr
+
+(cons 1 (cons 2 (cons 3 nil)))
+
+(setf y (cons 4 y))
+
+(length y)
+
+(reverse y)
+
+(append y '(1 2 3))
+
+(defun sum-list (lst)
+  (let ((total 0))
+    (dolist (n lst total) ;; return total
+      (setf total (+ total n)))))
+
+(defun exprc (x)
+  (cons '+ (cons (cons '* (cons 2 (cons x nil))) (cons 1 nil))))
+
+(princ (exprc 3))
+
+(defun exprl (x)
+  (list '+ (list '* 2 x) 1))
+
+(princ (exprl 3))
+
+(defun exprb (x)
+  `(+ (* 2 ,x) 1)) ;; backquote to evaluate x
+
+(princ (exprb 3))
+
+(defun exprbis (&rest xs)
+  `(+ (* 2 ,@xs) 1 ))
+
