@@ -26,3 +26,19 @@
 (let ((ans (if-swapped t 'false 'true)))
     (princ ans))
 
+;; Return first non-nil args
+(defmacro my-or (&rest args)
+  (if (null args)
+      nil
+      `(let ((temp# ,(car args)))
+         (if temp# temp# (my-or ,@(cdr args))))))
+
+(defmacro my-and (&rest args)
+  (if (= (length args) 1)
+    (first args)
+    `(if ,(first args)
+       ,(first args)
+       (my-and ,@(rest args)))))
+
+
+
