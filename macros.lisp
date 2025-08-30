@@ -41,4 +41,11 @@
        (my-and ,@(rest args)))))
 
 
+(defmacro for ((var from to) &rest body)
+  `(do ((,var ,from (1+ ,var))
+        (limit ,to))
+     ((>= ,var limit))
+     ,@body))
+
+
 
